@@ -43,8 +43,10 @@ export default class YouTubeVideo extends Component {
   }
 
   onPlayerReady = () => {
-    this.player.playVideo();
-    this.prestart = !this.props.playing;
+    if (this.props.shouldPrestart || this.props.playing) {
+      this.player.playVideo();
+      this.prestart = !this.props.playing;
+    }
     this.props.onReady({ duration: this.player.getDuration() * 1000 });
   }
 
@@ -61,7 +63,7 @@ export default class YouTubeVideo extends Component {
   }
 
   setVideoPlaying = () => {
-    if (this.prestart) {
+    if ((this.props.shouldPrestart || this.props.playing) && this.prestart) {
       this.player.pauseVideo();
       this.prestart = false;
     } else {
