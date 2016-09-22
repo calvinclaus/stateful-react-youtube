@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
 
-// Probleme:
-// 1) Längeres Buffern (manchmal) sendet ein onStateChange 'PAUSED'
-// 2) Wenn neues Video geladen wird (videoId über Props) dann einmalig onPositionChange feuern
 
 export default class YouTubeVideo extends Component {
   static get defaultProps() {
@@ -101,7 +98,7 @@ export default class YouTubeVideo extends Component {
   }
 
   componentDidMount() {
-    if (typeof(YT) !== 'undefined') {
+    if (typeof(YT) !== 'undefined' && YT.loaded) {
       this.initializePlayer();
     } else {
       window.onYouTubePlayerAPIReady = this.initializePlayer;
