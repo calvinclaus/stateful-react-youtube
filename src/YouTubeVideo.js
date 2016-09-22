@@ -85,8 +85,7 @@ export default class YouTubeVideo extends Component {
         this.stopOnProgressTimer();
         break;
       case BUFFERING:
-        // FIXME: führt dazu, dass das video gestartet wird (playing auf true)
-        // this.props.onStateChange('BUFFERING');
+        //not exposing this
         this.stopOnProgressTimer();
         break;
       case ENDED:
