@@ -66,7 +66,7 @@ export default class YouTubeVideo extends Component {
       this.prestart = false;
     } else {
       this.startOnProgressTimer();
-      this.props.onStateChange('PLAYING');
+      this.props.onPlayingChange(true);
     }
   }
 
@@ -81,7 +81,7 @@ export default class YouTubeVideo extends Component {
         }
         break;
       case PAUSED:
-        this.props.onStateChange('PAUSED');
+        this.props.onPlayingChange(false);
         this.stopOnProgressTimer();
         break;
       case BUFFERING:
@@ -90,7 +90,7 @@ export default class YouTubeVideo extends Component {
         this.stopOnProgressTimer();
         break;
       case ENDED:
-        this.props.onStateChange('ENDED');
+        this.props.onPlayingChange(false);
         this.stopOnProgressTimer();
         break;
       default:
