@@ -52,6 +52,9 @@ import YouTubeVideo from "stateful-react-youtube";
 | onProgress(position: Number)        	| function 	| noop 	| Fires every 100ms when the YouTube player is playing. |
 | onVolumeChange(volume: Number)        	| function 	| noop 	| Fires when the YouTube player volume is changed, or the player is muted/unmuted. |
 
+###Escape hatch
+You can access the YouTube API by putting a ref on the `YouTubeVideo` component and accessing `this.refs.yourRefName.player`
+
 ##Todos
 
 - There is no onProgress fired when the player position is changed via the native YouTube controls until the video is played again.
