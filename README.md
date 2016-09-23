@@ -1,5 +1,6 @@
 # Stateful React Youtube
-A React YouTube API Wrapper that allows video control via props.
+A React YouTube API Wrapper that allows declerative video control via props.
+This component is especially useful if you plan on creating an alternative timeline for YouTube videos.
 
 ## API
 
