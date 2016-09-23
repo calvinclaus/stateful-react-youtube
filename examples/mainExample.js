@@ -20,12 +20,14 @@ export default class MainExample extends React.Component {
       position: 0,
       playing: false,
       duration: 0,
+      volume: 30,
     }
     this.handleOnReady = this.handleOnReady.bind(this);
     this.onPlayingChange = this.onPlayingChange.bind(this);
     this.setPosition = this.setPosition.bind(this);
     this.toggleState = this.toggleState.bind(this);
     this.changeVideoId = this.changeVideoId.bind(this);
+    this.handleVolumeChange = this.handleVolumeChange.bind(this);
   }
 
   changeVideoId() {
@@ -48,16 +50,20 @@ export default class MainExample extends React.Component {
     this.setState({playing: !this.state.playing});
   }
 
+  handleVolumeChange(volume) {
+    this.setState({volume: Math.round(volume)});
+  }
+
   render () {
     let videoId = this.videoIds[this.state.currentVideo];
     return (
-      <div style={{width:560, margin: "0 auto",}}>
-        <h1>Sateful React YouTube</h1>
+      <div>
         <h3>State:</h3>
         <ul>
           <li> videoId: <b>{videoId}</b> <button onClick={this.changeVideoId}>Next</button></li>
           <li> playing: <b>{this.state.playing ? "PLAYING" : "PAUSED"}</b> </li>
           <li> position: <b>{Math.round(this.state.position)}ms</b> </li>
+          <li> volume: <b>{this.state.volume ? this.state.volume + "%": "MUTED"}</b> </li>
         </ul>
 
 
@@ -65,29 +71,51 @@ export default class MainExample extends React.Component {
           position={this.state.position}
           videoId={videoId}
           playing={this.state.playing}
+          volume={this.state.volume}
           width="560"
           height="315"
+          playerVars={{
+            controls: 1,
+            modestbranding: 1,
+            showinfo: 0,
+            disablekb: 1,
+            enablejsapi: 1,
+            fs: 1,
+            autohide: 2,
+          }}
+          shouldPrestart={true}
+
           onPlayingChange={this.onPlayingChange}
           onReady={this.handleOnReady}
           onProgress={this.setPosition}
-          shouldPrestart={false}
+          onVolumeChange={this.handleVolumeChange}
         ></YouTubeVideo>
 
 
-        <div style={{marginTop: 20}}>
-          <Timecode milliseconds={this.state.position} /> - <Timecode milliseconds={this.state.duration} />
-          <button style={{marginLeft: 10, marginBottom:10}} onClick={this.toggleState}>
-            {this.state.playing ? "Pause" : "Play"}
-          </button>
-          <Slider
+      <div style={{marginTop: 20}}>
+        <Timecode milliseconds={this.state.position} /> - <Timecode milliseconds={this.state.duration} />
+        <button style={{marginLeft: 10, marginBottom:10}} onClick={this.toggleState}>
+          {this.state.playing ? "Pause" : "Play"}
+        </button>
+        <div style={{height: 50, marginLeft: 50,  display: "inline-block"}}>
+          <Slider 
+            vertical
             range={false}
-            max={this.state.duration}
-            value={this.state.position}
-            onChange={position => { this.state.duration && this.setPosition(position) }}
-            onRangeClick={position => { this.state.duration && this.setPosition(position) }}
+            max={100}
+            value={this.state.volume}
+            onChange={this.handleVolumeChange}
           />
-          </div>
+        </div>
+        <hr />
+        <Slider
+          range={false}
+          max={this.state.duration}
+          value={this.state.position}
+          onChange={position => { this.state.duration && this.setPosition(position) }}
+          onRangeClick={position => { this.state.duration && this.setPosition(position) }}
+        />
       </div>
+    </div>
     )
   }
 }
