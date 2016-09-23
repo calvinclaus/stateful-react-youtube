@@ -132,7 +132,11 @@ export default class YouTubeVideo extends Component {
     if (typeof(YT) !== 'undefined' && YT.loaded) {
       this.initializePlayer();
     } else {
-      window.onYouTubePlayerAPIReady = this.initializePlayer;
+      let current = window.onYouTubePlayerAPIReady;
+      window.onYouTubePlayerAPIReady = () => {
+        current && current();  
+        this.initializePlayer();
+      }
     }
   }
 
