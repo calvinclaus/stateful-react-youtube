@@ -2,14 +2,14 @@
   "name": "stateful-react-youtube",
   "version": "0.0.0",
   "description": "Stateful react youtube component",
-  "main": "src/entry.js",
+  "main": "build/library.js",
   "directories": {
     "example": "examples"
   },
   "scripts": {
     "start": "webpack-dev-server --content-base ./build --hot --inline --host 0.0.0.0",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "clearBuild": "rimraf build",
+    "clearBuild": "rimraf build; rimraf gh-pages;",
     "build": "npm run clearBuild && NODE_ENV='production' webpack -p"
   },
   "repository": {

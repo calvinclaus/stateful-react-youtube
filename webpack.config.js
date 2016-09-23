@@ -1,10 +1,17 @@
 var DefinePlugin = require('webpack').DefinePlugin;
 var env = process.argv[2] !== "-p" ? '"development"' : '"production"'; 
 module.exports = {
-  entry: './examples/entry.js',
+  entry: {
+    library: './src/entry.js',
+    examples: './examples/entry.js',
+  },
   output: {
-    filename: 'examples.js',
+    filename: '[name].js',
     path: './build',
+    library: "stateful-react-youtube",
+    libraryTarget: "umd",
+    umdNamedDefine: true,
+    devtool: 'source-map'
   },
   module: {
     loaders: [
@@ -22,10 +29,3 @@ module.exports = {
     })
   ]
 }
-
-/*
-library: "stateful-react-youtube",
-libraryTarget: "umd",
-umdNamedDefine: true
-devtool: 'source-map',
-*/
