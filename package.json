@@ -10,7 +10,8 @@
     "start": "webpack-dev-server --content-base ./build --hot --inline --host 0.0.0.0",
     "test": "echo \"Error: no test specified\" && exit 1",
     "clearBuild": "rimraf build",
-    "build": "npm run clearBuild && NODE_ENV='production' webpack -p"
+    "build": "npm run clearBuild && NODE_ENV='production' webpack -p",
+    "publish": "npm run build; npm run publish"
   },
   "repository": {
     "type": "git",
@@ -22,7 +23,15 @@
     "youtube",
     "player"
   ],
-  "author": "calvinclaus@me.com",
+  "author": {
+    "name": "Calvin Claus", 
+    "url": "https://twitter.com/calvin_claus",
+    "email": "calvinclaus@me.com"
+  },
+  "contributors": [{
+    "name": "Moritz Kobrna", 
+    "url": "https://twitter.com/neuling2k"
+  }],
   "license": "ISC",
   "dependencies": {},
   "devDependencies": {
