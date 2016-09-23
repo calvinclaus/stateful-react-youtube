@@ -4,9 +4,7 @@ This component is especially useful if you plan on creating an alternative timel
 
 ![funny img](http://i.giphy.com/H3oWbYbyhxedq.gif)
 
-##Demo
-
-[demo link](https://calvinclaus.github.io/stateful-react-youtube/)
+##**[----> Demo <----](https://calvinclaus.github.io/stateful-react-youtube/)**
 
 ##Usage
 Include the YouTube API in your html file:
