@@ -62,4 +62,4 @@ You can access the YouTube API by putting a ref on the `YouTubeVideo` component 
 
 ##Other
 
-This library was crafted with care by ---TODO: Mo/Moritz/Neuling/etc.?--- [Calvin Claus](https://twitter.com/calvin_claus).
+This library was crafted with care by [Moritz Kobrna](https://twitter.com/neuling2k) [Calvin Claus](https://twitter.com/calvin_claus).
