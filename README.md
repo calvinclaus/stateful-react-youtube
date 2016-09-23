@@ -10,6 +10,7 @@ A React YouTube API Wrapper that allows video control via props.
 | position       	| Number  	| 0     	| Milliseconds since the beginning of the video.                                                                               	|
 | videoId        	| String  	| ""    	| YouTube video id (e.g. "JsgpZdGVNys").                                                                                         	|
 | playing        	| Boolean 	| false 	| Whether YouTube video is playing or not.                                                                                     	|
+| volume        	| Number 	| 50 	| Volume of the YouTube video.                                                                                     	|
 | shouldPrestart 	| Boolean 	| true  	| When false player displays thumbnail, when true player displays video frame at position, before video is played by the user. 	|
 | width          	| String  	| "500" 	| Player width.                                                                                                                	|
 | height         	| String  	| "500" 	| Player height.                                                                                                               	|
@@ -20,6 +21,7 @@ A React YouTube API Wrapper that allows video control via props.
 | onReady({ duration: Number})        	| function  	| noop    	| Fired when YouTube API is ready.                                                                                         	|
 | onPlayingChange(playing: Boolean)       	| function  	| noop     	| Fires when playing state is changed.                                                                               	|
 | onProgress(position: Number)        	| function 	| noop 	| Fires every 100ms when the YouTube player is playing. |
+| onVolumeChange(volume: Number)        	| function 	| noop 	| Fires when the YouTube player volume is changed, or the player is muted/unmuted. |
 
 ##Todos
 
