@@ -5,7 +5,6 @@ export default class SimpleExample extends React.Component {
   render () {
     return (
       <div>
-        <h3>Simple Example</h3>
         <YouTubeVideo
           videoId="bQQVybyIk5E"
           width="560"

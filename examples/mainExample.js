@@ -80,7 +80,7 @@ export default class MainExample extends React.Component {
             showinfo: 0,
             disablekb: 1,
             enablejsapi: 1,
-            fs: 1,
+            fs: 0,
             autohide: 2,
           }}
           shouldPrestart={true}
@@ -106,7 +106,6 @@ export default class MainExample extends React.Component {
             onChange={this.handleVolumeChange}
           />
         </div>
-        <hr />
         <Slider
           range={false}
           max={this.state.duration}

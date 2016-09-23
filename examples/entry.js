@@ -7,12 +7,17 @@ import SimpleExample from "./simpleExample.js";
 class Examples extends React.Component {
   render () {
     return (
-      <div  style={{width:560, margin: "0 auto",}}>
-        <h1>Sateful React YouTube</h1>
-        <h2>Simple example:</h2>
-        <SimpleExample />
-        <h2>Most features:</h2>
+      <div  style={{maxWidth:560, margin: "0 auto", fontFamily: "sans-serif",}}>
+        <h1>Sateful React YouTube Examples</h1>
+        <h2>1) Most features: &nbsp;
+          <span style={{fontSize:17}}><a href="https://github.com/calvinclaus/stateful-react-youtube/blob/master/examples/mainExample.js">(Source)</a></span>
+        </h2>
         <MainExample />
+        <div style={{marginTop:30, marginBottom: 30}}></div>
+        <h2>2) Simple Example: &nbsp;
+          <span style={{fontSize:17}}><a href="https://github.com/calvinclaus/stateful-react-youtube/blob/master/examples/simpleExample.js">(Source)</a></span>
+        </h2>
+        <SimpleExample />
       </div>
     )
   }
