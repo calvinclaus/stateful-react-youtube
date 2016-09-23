@@ -4,18 +4,17 @@ import React, { Component } from 'react';
 export default class YouTubeVideo extends Component {
   static get defaultProps() {
     return {
+      position: 0,
+      width: "560",
+      height: "315",
+      playing: false,
+      volume: 50,
+      shouldPrestart: true,
       onProgress: () => {},
       onStateChange: () => {},
       onReady: () => {},
-      playerVars: {
-        controls: 0,
-        modestbranding: 1,
-        showinfo: 0,
-        disablekb: 1,
-        enablejsapi: 1,
-        fs: 0,
-        autohide: 2,
-      },
+      onVolumeChange: () => {},
+      playerVars: { },
     };
   }
 
