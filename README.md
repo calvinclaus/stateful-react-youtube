@@ -23,6 +23,6 @@ A React YouTube API Wrapper that allows video control via props.
 
 ##Todos
 
-- There is no onProgress fired when the player position is changed via the YouTube Controls until the user plays the video again.
+- There is no onProgress fired when the player position is changed via the native YouTube controls until the video is played again.
 - Tests
 
