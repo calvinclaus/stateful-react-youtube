@@ -1,7 +1,33 @@
 # Stateful React Youtube
 A React YouTube API Wrapper that allows declerative video control via props.
 This component is especially useful if you plan on creating an alternative timeline for YouTube videos.
-[funny img](http://gph.is/1szfa1O)
+
+![funny img](http://i.giphy.com/H3oWbYbyhxedq.gif)
+
+##Usage
+Include the YouTube API in your html file:
+```HTML
+<script src="https://www.youtube.com/player_api"></script>
+```
+Fire it up:
+```javascript
+import YouTubeVideo from "stateful-react-youtube";
+//...
+//in render:
+<YouTubeVideo
+  position={this.state.position}
+  videoId={this.state.videoId}
+  playing={this.state.playing}
+  volume={this.state.volume}
+  shouldPrestart={true}
+
+  onPlayingChange={this.onPlayingChange}
+  onReady={this.handleOnReady}
+  onProgress={this.setPosition}
+  onVolumeChange={this.handleVolumeChange}
+></YouTubeVideo>
+
+```
 ## API
 
 ###props (non functions)
