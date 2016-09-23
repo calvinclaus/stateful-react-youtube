@@ -36,6 +36,36 @@ export default class YouTubeVideo extends Component {
     }, 100);
   }
 
+  listenForVolumeChanges() {
+    this.stopListeningForVolumeChanges();
+    this.player.setVolume(this.props.volume);
+    let lastVolume = this.props.volume;
+    let lastMuted = !this.props.volume;
+    let volumeBeforeMute = null;
+    setTimeout(() => { //becuase setVolume is async
+      this.onVolumeChangeListener = setInterval(() => {
+        if (lastMuted !== this.player.isMuted()) {
+          if (!this.player.isMuted()) {
+            this.props.onVolumeChange(volumeBeforeMute);
+            this.player.setVolume(volumeBeforeMute);
+          } else {
+            volumeBeforeMute = this.player.getVolume();
+            this.props.onVolumeChange(0);
+          }
+        } else if (lastVolume !== this.player.getVolume()) {
+          this.props.onVolumeChange(this.player.getVolume());
+        }
+        lastVolume = this.player.getVolume();
+        lastMuted = this.player.isMuted();
+      }, 100);
+    }, 100);
+  }
+
+  stopListeningForVolumeChanges() {
+    clearInterval(this.onVolumeChangeListener);
+    this.onVolumeChangeListener = null;
+  }
+
   stopOnProgressTimer() {
     clearInterval(this.onProgressTimer);
     this.onProgressTimer = null;
@@ -47,6 +77,7 @@ export default class YouTubeVideo extends Component {
       this.prestart = !this.props.playing;
     }
     this.props.onReady({ duration: this.player.getDuration() * 1000 });
+    this.listenForVolumeChanges();
   }
 
   onNewVideoLoaded = () => {
@@ -131,6 +162,10 @@ export default class YouTubeVideo extends Component {
         this.loadingNewVideo = true;
         this.player.loadVideoById(this.props.videoId);
       }
+    }
+
+    if (prevProps.volume !== this.props.volume) {
+      this.player.setVolume(this.props.volume);
     }
 
     if (Math.abs(prevProps.position - this.props.position) > 200) {
