@@ -11,7 +11,7 @@ export default class YouTubeVideo extends Component {
       volume: 50,
       shouldPrestart: true,
       onProgress: () => {},
-      onStateChange: () => {},
+      onPlayingChange: () => {},
       onReady: () => {},
       onVolumeChange: () => {},
       playerVars: { },
