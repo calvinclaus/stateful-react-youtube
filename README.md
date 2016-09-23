@@ -54,4 +54,5 @@ import YouTubeVideo from "stateful-react-youtube";
 
 - There is no onProgress fired when the player position is changed via the native YouTube controls until the video is played again.
 - Tests
-
+##Other
+This library was crafted with care by ---TODO: Mo/Moritz/Neuling/etc.?--- [Calvin Claus](https://twitter.com/calvin_claus).
