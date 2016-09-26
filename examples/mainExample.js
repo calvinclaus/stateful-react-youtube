@@ -98,7 +98,7 @@ export default class MainExample extends React.Component {
           {this.state.playing ? "Pause" : "Play"}
         </button>
         <div style={{height: 50, marginLeft: 50,  display: "inline-block"}}>
-          <Slider 
+          <Slider
             vertical
             range={false}
             max={100}

@@ -10,6 +10,7 @@ export default class YouTubeVideo extends Component {
       playing: false,
       volume: 50,
       shouldPrestart: true,
+      minPositionChangeToNotify: 100,
       onProgress: () => {},
       onPlayingChange: () => {},
       onReady: () => {},
@@ -23,52 +24,31 @@ export default class YouTubeVideo extends Component {
     this.player = null;
     this.onProgressTimer = null;
     this.loadingNewVideo = false;
+    this.lastSentPosition = 0;
+    this.lastSentVolume = 0;
   }
 
   getCurrentTimeInMs() {
     return this.player.getCurrentTime() * 1000;
   }
 
-  startOnProgressTimer() {
-    this.stopOnProgressTimer();
-    this.onProgressTimer = setInterval(() => {
-      this.props.onProgress(this.getCurrentTimeInMs());
-    }, 100);
-  }
-
-  listenForVolumeChanges() {
-    this.stopListeningForVolumeChanges();
-    this.player.setVolume(this.props.volume);
-    let lastVolume = this.props.volume;
-    let lastMuted = !this.props.volume;
-    let volumeBeforeMute = null;
-    setTimeout(() => { //becuase setVolume is async
-      this.onVolumeChangeListener = setInterval(() => {
-        if (lastMuted !== this.player.isMuted()) {
-          if (!this.player.isMuted()) {
-            this.props.onVolumeChange(volumeBeforeMute);
-            this.player.setVolume(volumeBeforeMute);
-          } else {
-            volumeBeforeMute = this.player.getVolume();
-            this.props.onVolumeChange(0);
-          }
-        } else if (lastVolume !== this.player.getVolume()) {
-          this.props.onVolumeChange(this.player.getVolume());
-        }
-        lastVolume = this.player.getVolume();
-        lastMuted = this.player.isMuted();
-      }, 100);
-    }, 100);
+  startVideoStateObserver = (t) => {
+    const currentPosition = this.getCurrentTimeInMs();
+    const currentVolume = this.player.isMuted() ? 0 : this.player.getVolume();
+    if (this.lastSentVolume != currentVolume) {
+      this.lastSentVolume = currentVolume;
+      this.props.onVolumeChange(currentVolume);
+    }
+    if (Math.abs(this.lastSentPosition - currentPosition) > this.props.minPositionChangeToNotify) {
+      this.lastSentPosition = currentPosition;
+      this.props.onProgress(currentPosition);
+    }
+    window.requestAnimationFrame(this.startVideoStateObserver);
   }
 
   stopListeningForVolumeChanges() {
     clearInterval(this.onVolumeChangeListener);
     this.onVolumeChangeListener = null;
-  }
-
-  stopOnProgressTimer() {
-    clearInterval(this.onProgressTimer);
-    this.onProgressTimer = null;
   }
 
   onPlayerReady = () => {
@@ -77,14 +57,14 @@ export default class YouTubeVideo extends Component {
       this.prestart = !this.props.playing;
     }
     this.props.onReady({ duration: this.player.getDuration() * 1000 });
-    this.listenForVolumeChanges();
+    this.setPlayerVolume(this.props.volume);
+    this.startVideoStateObserver();
   }
 
   onNewVideoLoaded = () => {
     this.onPlayerReady();
     if (!this.props.playing) {
       this.player.pauseVideo();
-      this.stopOnProgressTimer();
       this.prestart = false;
     } else {
       this.setVideoPlaying();
@@ -97,7 +77,6 @@ export default class YouTubeVideo extends Component {
       this.player.pauseVideo();
       this.prestart = false;
     } else {
-      this.startOnProgressTimer();
       this.props.onPlayingChange(true);
     }
   }
@@ -114,15 +93,15 @@ export default class YouTubeVideo extends Component {
         break;
       case PAUSED:
         this.props.onPlayingChange(false);
-        this.stopOnProgressTimer();
+        // this.stopOnProgressTimer();
         break;
       case BUFFERING:
         //not exposing this
-        this.stopOnProgressTimer();
+        // this.stopOnProgressTimer();
         break;
       case ENDED:
         this.props.onPlayingChange(false);
-        this.stopOnProgressTimer();
+        // this.stopOnProgressTimer();
         break;
       default:
     }
@@ -134,7 +113,7 @@ export default class YouTubeVideo extends Component {
     } else {
       let current = window.onYouTubePlayerAPIReady;
       window.onYouTubePlayerAPIReady = () => {
-        current && current();  
+        current && current();
         this.initializePlayer();
       }
     }
@@ -157,6 +136,17 @@ export default class YouTubeVideo extends Component {
     });
   }
 
+  setPlayerVolume(volume) {
+    if (volume > 0) {
+      this.player.unMute();
+    }
+    if (volume === 0) {
+      this.player.mute();
+    } else {
+      this.player.setVolume(volume);
+    }
+  }
+
   componentDidUpdate(prevProps) {
     if (prevProps.videoId !== this.props.videoId) {
       this.stopOnProgressTimer();
@@ -169,10 +159,10 @@ export default class YouTubeVideo extends Component {
     }
 
     if (prevProps.volume !== this.props.volume) {
-      this.player.setVolume(this.props.volume);
+      this.setPlayerVolume(this.props.volume);
     }
 
-    if (Math.abs(prevProps.position - this.props.position) > 200) {
+    if (this.lastSentPosition !== this.props.position) {
       this.player.seekTo(this.props.position / 1000, true);
     }
 
