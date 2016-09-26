@@ -149,7 +149,7 @@ export default class YouTubeVideo extends Component {
 
   componentDidUpdate(prevProps) {
     if (prevProps.videoId !== this.props.videoId) {
-      this.stopOnProgressTimer();
+      // this.stopOnProgressTimer();
       if (!this.player) {
         this.initializePlayer();
       } else {
