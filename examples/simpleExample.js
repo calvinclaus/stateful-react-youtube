@@ -9,7 +9,6 @@ export default class SimpleExample extends React.Component {
           videoId="bQQVybyIk5E"
           width="560"
           height="315"
-          onVolumeChange={(v) => console.log(v)}
         ></YouTubeVideo>
       </div>
     )

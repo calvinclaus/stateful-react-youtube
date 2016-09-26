@@ -31,7 +31,7 @@ export default class YouTubeVideo extends Component {
     return this.player.getCurrentTime() * 1000;
   }
 
-  startVideoStateObserver = (t) => {
+  callChangeHandlers() {
     const currentPosition = this.getCurrentTimeInMs();
     const currentVolume = this.player.isMuted() ? 0 : this.player.getVolume();
     if (this.lastSentVolume != currentVolume) {
@@ -42,6 +42,10 @@ export default class YouTubeVideo extends Component {
       this.lastSentPosition = currentPosition;
       this.props.onProgress(currentPosition);
     }
+  }
+
+  startVideoStateObserver = (t) => {
+    if (this.player) this.callChangeHandlers();
     window.requestAnimationFrame(this.startVideoStateObserver);
   }
 
@@ -152,7 +156,7 @@ export default class YouTubeVideo extends Component {
       }
     }
 
-    if (!isNaN(this.props.volume) && prevProps.volume !== this.props.volume) {
+    if (prevProps.volume !== this.props.volume) {
       this.setPlayerVolume(this.props.volume);
     }
 
