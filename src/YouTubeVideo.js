@@ -56,7 +56,6 @@ export default class YouTubeVideo extends Component {
       this.prestart = !this.props.playing;
     }
     this.props.onReady({ duration: this.player.getDuration() * 1000 });
-    console.log('playe ready');
     this.setPlayerVolume(this.props.volume);
     this.startVideoStateObserver();
   }
@@ -133,12 +132,10 @@ export default class YouTubeVideo extends Component {
   }
 
   setPlayerVolume(volume) {
-    console.log(volume);
     if (volume > 0) {
       this.player.unMute();
     }
     if (volume === 0) {
-      console.log('volume is 0');
       this.player.mute();
     } else {
       this.player.setVolume(volume);
@@ -156,7 +153,6 @@ export default class YouTubeVideo extends Component {
     }
 
     if (!isNaN(this.props.volume) && prevProps.volume !== this.props.volume) {
-      console.log('component update');
       this.setPlayerVolume(this.props.volume);
     }
 
