@@ -9,7 +9,7 @@ class Examples extends React.Component {
     return (
       <div  style={{maxWidth:560, margin: "0 auto", fontFamily: "sans-serif",}}>
         <h1>Sateful React YouTube Examples</h1>
-        <h2>1) Most features: &nbsp;
+        <h2>1) Semi-Controlled Component: &nbsp;
           <span style={{fontSize:17}}><a href="https://github.com/calvinclaus/stateful-react-youtube/blob/master/examples/mainExample.js">(Source)</a></span>
         </h2>
         <MainExample />
