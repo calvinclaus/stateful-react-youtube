@@ -11,8 +11,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "clearBuild": "rimraf build",
     "build": "npm run clearBuild && NODE_ENV='production' webpack -p",
+    "build:np":"npm run clearBuild && webpack", 
     "update-gh-pages": "npm run build && rimraf tmp-for-gh-pages && mkdir tmp-for-gh-pages && cp build/examples.js tmp-for-gh-pages && cp build/index.html tmp-for-gh-pages && git checkout gh-pages && mv tmp-for-gh-pages/** ./ &&  git add . && git commit -m 'updated' && git push origin gh-pages; git checkout master && rimraf tmp-for-gh-pages;",
-    "publish": "npm run build; npm publish"
+    "publish": "npm run build && npm publish"
   },
   "repository": {
     "type": "git",
