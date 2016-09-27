@@ -60,7 +60,7 @@ export default class MainExample extends React.Component {
       <div>
         <h3>State:</h3>
         <ul>
-          <li> videoId: <b>{videoId}</b> <button onClick={this.changeVideoId}>Next</button></li>
+          <li> videoId: <b>{videoId}</b> {!this.props.noControl && <button onClick={this.changeVideoId}>Next</button>}</li>
           <li> playing: <b>{this.state.playing ? "PLAYING" : "PAUSED"}</b> </li>
           <li> position: <b>{Math.round(this.state.position)}ms</b> </li>
           <li> volume: <b>{this.state.volume ? this.state.volume + "%": "MUTED"}</b> </li>
@@ -92,29 +92,31 @@ export default class MainExample extends React.Component {
         ></YouTubeVideo>
 
 
-      <div style={{marginTop: 20}}>
-        <Timecode milliseconds={this.state.position} /> - <Timecode milliseconds={this.state.duration} />
-        <button style={{marginLeft: 10, marginBottom:10}} onClick={this.toggleState}>
-          {this.state.playing ? "Pause" : "Play"}
-        </button>
-        <div style={{height: 50, marginLeft: 50,  display: "inline-block"}}>
+      {!this.props.noControl && 
+        <div style={{marginTop: 20}}>
+          <Timecode milliseconds={this.state.position} /> - <Timecode milliseconds={this.state.duration} />
+          <button style={{marginLeft: 10, marginBottom:10}} onClick={this.toggleState}>
+            {this.state.playing ? "Pause" : "Play"}
+          </button>
+          <div style={{height: 50, marginLeft: 50,  display: "inline-block"}}>
+            <Slider
+              vertical
+              range={false}
+              max={100}
+              value={this.state.volume}
+              onChange={this.handleVolumeChange}
+            />
+          </div>
           <Slider
-            vertical
             range={false}
-            max={100}
-            value={this.state.volume}
-            onChange={this.handleVolumeChange}
+            max={this.state.duration}
+            value={this.state.position}
+            onChange={position => { this.state.duration && this.setPosition(position) }}
+            onRangeClick={position => { this.state.duration && this.setPosition(position) }}
           />
         </div>
-        <Slider
-          range={false}
-          max={this.state.duration}
-          value={this.state.position}
-          onChange={position => { this.state.duration && this.setPosition(position) }}
-          onRangeClick={position => { this.state.duration && this.setPosition(position) }}
-        />
+        }
       </div>
-    </div>
     )
   }
 }
