@@ -45,9 +45,14 @@ export default class YouTubeVideo extends Component {
   }
 
   startVideoStateObserver = (t) => {
-    if (this.player) this.callChangeHandlers();
+    if (this.currentVideoReady()) this.callChangeHandlers();
     window.requestAnimationFrame(this.startVideoStateObserver);
   }
+
+  currentVideoReady() {
+    return this.player && !isNaN(this.getCurrentTimeInMs()); //hack to check if player is loaded
+  }
+
 
   stopListeningForVolumeChanges() {
     clearInterval(this.onVolumeChangeListener);
