@@ -1,6 +1,6 @@
 {
   "name": "stateful-react-youtube",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Stateful react youtube component",
   "main": "build/library.js",
   "directories": {
