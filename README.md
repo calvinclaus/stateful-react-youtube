@@ -92,8 +92,10 @@ import YouTubeVideo from "stateful-react-youtube";
       <td>YouTube API Player Parameters. Refer to <a href="https://developers.google.com/youtube/player_parameters?playerVersion=HTML5">youtube's documentation</a>.</td>
     </tr>
   </tbody></table>
-  ###props (functions)
-  <table><thead>
+  
+###props (functions)
+ 
+ <table><thead>
       <tr>
         <th>Name</th>
         <th>Type</th>
@@ -127,14 +129,14 @@ import YouTubeVideo from "stateful-react-youtube";
       </tr>
     </tbody></table>
 
-  ###Escape hatch
-  You can access the YouTube API by putting a ref on the `YouTubeVideo` component and accessing `this.refs.yourRefName.player`
+###Escape hatch
+You can access the YouTube API by putting a ref on the `YouTubeVideo` component and accessing `this.refs.yourRefName.player`
 
-  ##Todos
+##Todos
 
-  - There is no onProgress fired when the player position is changed via the native YouTube controls until the video is played again.
-  - Tests
+- There is no onProgress fired when the player position is changed via the native YouTube controls until the video is played again.
+- Tests
 
-  ##Other
+##Other
 
-  This library was crafted with care by [Moritz Kobrna](https://twitter.com/neuling2k) & [Calvin Claus](https://twitter.com/calvin_claus).
+This library was crafted with care by [Moritz Kobrna](https://twitter.com/neuling2k) & [Calvin Claus](https://twitter.com/calvin_claus).
