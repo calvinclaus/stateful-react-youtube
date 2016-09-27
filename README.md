@@ -27,39 +27,114 @@ import YouTubeVideo from "stateful-react-youtube";
   onReady={this.handleOnReady}
   onProgress={this.setPosition}
   onVolumeChange={this.handleVolumeChange}
-></YouTubeVideo>
+  ></YouTubeVideo>
 
 ```
 ## API
 
 ###props (non functions)
 
-| Name       	| Type  	| Default     	| Description                                                                               	|
-|----------------	|---------	|-------	|------------------------------------------------------------------------------------------------------------------------------	|
-| position       	| Number  	| 0     	| Milliseconds since the beginning of the video.                                                                               	|
-| videoId        	| String  	| ""    	| YouTube video id (e.g. "JsgpZdGVNys").                                                                                         	|
-| playing        	| Boolean 	| false 	| Whether YouTube video is playing or not.                                                                                     	|
-| volume        	| Number 	| 50 	| Volume of the YouTube video.                                                                                     	|
-| shouldPrestart 	| Boolean 	| true  	| When false player displays thumbnail, when true player displays video frame at position, before video is played by the user. 	|
-| width          	| String  	| "500" 	| Player width.                                                                                                                	|
-| height         	| String  	| "500" 	| Player height.                                                                                                               	|
-| playerVars         	| Object  	| {} 	| YouTube API Player Parameters. Refer to [youtube's documentation](https://developers.google.com/youtube/player_parameters?playerVersion=HTML5).                                                                                                              	|
-###props (functions)
-| Name       	| Type  	| Default     	| Description                                                                               	|
-|----------------	|---------	|-------	|------------------------------------------------------------------------------------------------------------------------------	|
-| onReady({ duration: Number})        	| function  	| noop    	| Fired when YouTube API is ready.                                                                                         	|
-| onPlayingChange(playing: Boolean)       	| function  	| noop     	| Fires when playing state is changed.                                                                               	|
-| onProgress(position: Number)        	| function 	| noop 	| Fires every 100ms when the YouTube player is playing. |
-| onVolumeChange(volume: Number)        	| function 	| noop 	| Fires when the YouTube player volume is changed, or the player is muted/unmuted. |
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead><tbody>
+    <tr>
+      <td>position</td>
+      <td>Number</td>
+      <td>0</td>
+      <td>Milliseconds since the beginning of the video.</td>
+    </tr>
+    <tr>
+      <td>videoId</td>
+      <td>String</td>
+      <td>""</td>
+      <td>YouTube video id (e.g. "JsgpZdGVNys").</td>
+    </tr>
+    <tr>
+      <td>playing</td>
+      <td>Boolean</td>
+      <td>false</td>
+      <td>Whether YouTube video is playing or not.</td>
+    </tr>
+    <tr>
+      <td>volume</td>
+      <td>Number</td>
+      <td>50</td>
+      <td>Volume of the YouTube video.</td>
+    </tr>
+    <tr>
+      <td>shouldPrestart</td>
+      <td>Boolean</td>
+      <td>true</td>
+      <td>When false player displays thumbnail, when true player displays video frame at position, before video is played by the user.</td>
+    </tr>
+    <tr>
+      <td>width</td>
+      <td>String</td>
+      <td>"500"</td>
+      <td>Player width.</td>
+    </tr>
+    <tr>
+      <td>height</td>
+      <td>String</td>
+      <td>"500"</td>
+      <td>Player height.</td>
+    </tr>
+    <tr>
+      <td>playerVars</td>
+      <td>Object</td>
+      <td>{}</td>
+      <td>YouTube API Player Parameters. Refer to <a href="https://developers.google.com/youtube/player_parameters?playerVersion=HTML5">youtube's documentation</a>.</td>
+    </tr>
+  </tbody></table>
+  ###props (functions)
+  <table><thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Default</th>
+        <th>Description</th>
+      </tr>
+    </thead><tbody>
+      <tr>
+        <td>onReady({ duration: Number})</td>
+        <td>function</td>
+        <td>noop</td>
+        <td>Fired when YouTube API is ready.</td>
+      </tr>
+      <tr>
+        <td>onPlayingChange(playing: Boolean)</td>
+        <td>function</td>
+        <td>noop</td>
+        <td>Fires when playing state is changed.</td>
+      </tr>
+      <tr>
+        <td>onProgress(position: Number)</td>
+        <td>function</td>
+        <td>noop</td>
+        <td>Fires every 100ms when the YouTube player is playing.</td>
+      </tr>
+      <tr>
+        <td>onVolumeChange(volume: Number)</td>
+        <td>function</td>
+        <td>noop</td>
+        <td>Fires when the YouTube player volume is changed, or the player is muted/unmuted.</td>
+      </tr>
+    </tbody></table>
 
-###Escape hatch
-You can access the YouTube API by putting a ref on the `YouTubeVideo` component and accessing `this.refs.yourRefName.player`
+  ###Escape hatch
+  You can access the YouTube API by putting a ref on the `YouTubeVideo` component and accessing `this.refs.yourRefName.player`
 
-##Todos
+  ##Todos
 
-- There is no onProgress fired when the player position is changed via the native YouTube controls until the video is played again.
-- Tests
+  - There is no onProgress fired when the player position is changed via the native YouTube controls until the video is played again.
+  - Tests
 
-##Other
+  ##Other
 
-This library was crafted with care by [Moritz Kobrna](https://twitter.com/neuling2k) & [Calvin Claus](https://twitter.com/calvin_claus).
+  This library was crafted with care by [Moritz Kobrna](https://twitter.com/neuling2k) & [Calvin Claus](https://twitter.com/calvin_claus).
