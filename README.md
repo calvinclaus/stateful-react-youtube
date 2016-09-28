@@ -6,6 +6,12 @@ This component is especially useful if you plan on creating an alternative timel
 
 ##**[----> Demo <----](https://calvinclaus.github.io/stateful-react-youtube/)**
 
+## Installation
+
+```
+npm install --save react-redux
+```
+
 ##Usage
 Include the YouTube API in your html file:
 ```HTML
