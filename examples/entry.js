@@ -8,7 +8,7 @@ class Examples extends React.Component {
   render () {
     return (
       <div  style={{maxWidth:560, margin: "0 auto", fontFamily: "sans-serif",}}>
-        <h1>Sateful React YouTube Examples</h1>
+        <h1><a href="https://github.com/calvinclaus/stateful-react-youtube">Sateful React YouTube</a></h1>
 
         <h2>1) Simply display video: &nbsp;
           <span style={{fontSize:17}}><a href="https://github.com/calvinclaus/stateful-react-youtube/blob/master/examples/simpleExample.js">(Source)</a></span>
