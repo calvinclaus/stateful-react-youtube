@@ -9,7 +9,7 @@ This component is especially useful if you plan on creating an alternative timel
 ## Installation
 
 ```
-npm install --save react-redux
+npm install --save stateful-react-youtube
 ```
 
 ##Usage
