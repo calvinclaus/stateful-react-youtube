@@ -134,7 +134,6 @@ You can access the YouTube API by putting a ref on the `YouTubeVideo` component 
 
 ##Todos
 
-- There is no onProgress fired when the player position is changed via the native YouTube controls until the video is played again.
 - Tests
 
 ##Other
