@@ -50,13 +50,7 @@ export default class YouTubeVideo extends Component {
   }
 
   currentVideoReady() {
-    return this.player && !isNaN(this.getCurrentTimeInMs()); //hack to check if player is loaded
-  }
-
-
-  stopListeningForVolumeChanges() {
-    clearInterval(this.onVolumeChangeListener);
-    this.onVolumeChangeListener = null;
+    return this.player && !isNaN(this.getCurrentTimeInMs()); //hack to check if current video is ready
   }
 
   onPlayerReady = () => {
