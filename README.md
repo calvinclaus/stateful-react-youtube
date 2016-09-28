@@ -6,6 +6,12 @@ This component is especially useful if you plan on creating an alternative timel
 
 ##**[----> Demo <----](https://calvinclaus.github.io/stateful-react-youtube/)**
 
+## Installation
+
+```
+npm install --save stateful-react-youtube
+```
+
 ##Usage
 Include the YouTube API in your html file:
 ```HTML
@@ -134,7 +140,6 @@ You can access the YouTube API by putting a ref on the `YouTubeVideo` component 
 
 ##Todos
 
-- There is no onProgress fired when the player position is changed via the native YouTube controls until the video is played again.
 - Tests
 
 ##Other
