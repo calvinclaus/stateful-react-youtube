@@ -79,6 +79,14 @@ import YouTubeVideo from "stateful-react-youtube";
       <td>true</td>
       <td>When false player displays thumbnail, when true player displays video frame at position, before video is played by the user.</td>
     </tr>
+     <tr>
+      <td>minPositionChangeToNotify</td>
+      <td>Number</td>
+      <td>100</td>
+      <td>Minimum player position change (milliseconds) required for onProgress to be called. </td>
+    </tr>
+    
+    
     <tr>
       <td>width</td>
       <td>String</td>
