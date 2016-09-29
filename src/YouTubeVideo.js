@@ -46,7 +46,15 @@ export default class YouTubeVideo extends Component {
 
   startVideoStateObserver = (t) => {
     if (this.currentVideoReady()) this.callChangeHandlers();
-    window.requestAnimationFrame(this.startVideoStateObserver);
+    if (!this.stopObserver) window.requestAnimationFrame(this.startVideoStateObserver);
+  }
+
+  stopVideoStateObserver = () => {
+    this.stopObserver = true;
+  }
+
+  componentWillUnmount() {
+    this.stopVideoStateObserver();
   }
 
   currentVideoReady() {
@@ -171,6 +179,7 @@ export default class YouTubeVideo extends Component {
       this.player.pauseVideo();
     }
   }
+
 
   render() {
     return (
