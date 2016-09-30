@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 export default class YouTubeVideo extends Component {
   static get defaultProps() {
     return {
-      position: 0,
+      position: false,
       width: "560",
       height: "315",
       playing: false,
@@ -87,7 +87,13 @@ export default class YouTubeVideo extends Component {
       this.player.pauseVideo();
       this.prestart = false;
     } else {
-      this.props.onPlayingChange(true);
+      if (!this.props.playing && !this.justForcedVideo) {
+        this.justForcedVideo = true;
+        this.player.pauseVideo();
+        this.props.onPlayingChange(true);
+      } else if (this.justForcedVideo) {
+        this.justForcedVideo = false;
+      }
     }
   }
 
@@ -102,7 +108,13 @@ export default class YouTubeVideo extends Component {
         }
         break;
       case PAUSED:
-        this.props.onPlayingChange(false);
+        if (this.props.playing && !this.justForcedVideo) {
+          this.player.playVideo();
+          this.props.onPlayingChange(false);
+          this.justForcedVideo = true;
+        } else if (this.justForcedVideo) {
+          this.justForcedVideo = false;
+        }
         break;
       case BUFFERING:
         break;
@@ -167,7 +179,7 @@ export default class YouTubeVideo extends Component {
       this.setPlayerVolume(this.props.volume);
     }
 
-    if (this.lastSentPosition !== this.props.position) {
+    if (this.lastSentPosition !== this.props.position && !this.props.position === false) {
       this.player.seekTo(this.props.position / 1000, true);
     }
 

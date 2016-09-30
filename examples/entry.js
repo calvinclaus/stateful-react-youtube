@@ -15,20 +15,6 @@ class Examples extends React.Component {
         </h2>
         <SimpleExample />
         
-        <h2>2) Read Player State: &nbsp;
-          <span style={{fontSize:17}}><a href="https://github.com/calvinclaus/stateful-react-youtube/blob/master/examples/mainExample.js">(Source)</a></span>
-        </h2>
-        <MainExample noControl />
-        
-
-        <h2>3) Controll Player State: &nbsp;
-          <span style={{fontSize:17}}><a href="https://github.com/calvinclaus/stateful-react-youtube/blob/master/examples/mainExample.js">(Source)</a></span>
-        </h2>
-        <MainExample />
-        <div style={{marginTop:30, marginBottom: 30}}></div>
-
-
-
       </div>
     )
   }
