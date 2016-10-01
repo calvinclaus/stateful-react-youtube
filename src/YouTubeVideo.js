@@ -7,6 +7,7 @@ export default class YouTubeVideo extends Component {
       width: "560",
       height: "315",
       playing: false,
+      defaultPlaying: false,
       volume: 50,
       shouldPrestart: true,
       minPositionChangeToNotify: 100,
@@ -63,6 +64,7 @@ export default class YouTubeVideo extends Component {
 
   onPlayerReady = () => {
     if (this.props.shouldPrestart || this.props.playing) {
+      console.log("play videp called in player ready");
       this.player.playVideo();
       this.prestart = !this.props.playing;
     }
@@ -83,11 +85,13 @@ export default class YouTubeVideo extends Component {
   }
 
   setVideoPlaying = () => {
-    if ((this.props.shouldPrestart || this.props.playing) && this.prestart) {
+    if (((this.props.shouldPrestart || this.props.playing) && this.prestart)) {
       this.player.pauseVideo();
       this.prestart = false;
     } else {
+      console.log("setVideoPlaying called with playing = " , this.props.playing, "force played ", this.justForcedVideo);
       if (!this.props.playing && !this.justForcedVideo) {
+        console.log("force pausing video");
         this.justForcedVideo = true;
         this.player.pauseVideo();
         this.props.onPlayingChange(true);
@@ -108,7 +112,9 @@ export default class YouTubeVideo extends Component {
         }
         break;
       case PAUSED:
+        console.log("video has been paused, playing = ", this.props.playing, " force paused = ", this.justForcedVideo);
         if (this.props.playing && !this.justForcedVideo) {
+          console.log("play video called in paused");
           this.player.playVideo();
           this.props.onPlayingChange(false);
           this.justForcedVideo = true;
@@ -144,7 +150,7 @@ export default class YouTubeVideo extends Component {
       width,
       height,
       playerVars: {
-        start: this.props.position / 1000,
+        start: this.props.position  / 1000,
         ...playerVars,
       },
       events: {
@@ -182,12 +188,15 @@ export default class YouTubeVideo extends Component {
     if (this.lastSentPosition !== this.props.position && !this.props.position === false) {
       this.player.seekTo(this.props.position / 1000, true);
     }
+    console.log("did update ", prevProps.playing, this.props.playing);
 
     if (prevProps.playing === false && this.props.playing === true) {
+      console.log("play video called in componend did update");
       this.player.playVideo();
     }
 
     if (prevProps.playing === true && this.props.playing === false) {
+      console.log("pause video called in componend did update");
       this.player.pauseVideo();
     }
   }

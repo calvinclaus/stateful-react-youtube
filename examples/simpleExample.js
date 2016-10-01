@@ -25,7 +25,6 @@ export default class SimpleExample extends React.Component {
               width="560"
               height="315"
               onPlayingChange={(val) => {console.log("notified about playing change ", val); this.setState({playing: val})}}
-              playing={this.state.playing}
               minPositionChangeToNotify={100}
             ></YouTubeVideo>
           </div>
