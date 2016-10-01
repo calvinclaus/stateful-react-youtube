@@ -185,7 +185,9 @@ export default class YouTubeVideo extends Component {
       this.setPlayerVolume(this.props.volume);
     }
 
-    if (this.lastSentPosition !== this.props.position && !this.props.position === false) {
+      console.log(this.lastSentPosition, this.props.position);
+    if (this.lastSentPosition !== this.props.position && this.props.position !== false) {
+      console.log("seeking to position");
       this.player.seekTo(this.props.position / 1000, true);
     }
     console.log("did update ", prevProps.playing, this.props.playing);
