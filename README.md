@@ -38,7 +38,7 @@ import YouTubeVideo from "stateful-react-youtube";
 ```
 ## API
 
-###props (non functions)
+### props (non functions)
 
 <table>
   <thead>
