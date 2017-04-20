@@ -4,7 +4,7 @@ This component is especially useful if you plan on creating an alternative timel
 
 ![funny img](http://i.giphy.com/H3oWbYbyhxedq.gif)
 
-##**[----> Demo <----](https://calvinclaus.github.io/stateful-react-youtube/)**
+## **[----> Demo <----](https://calvinclaus.github.io/stateful-react-youtube/)**
 
 ## Installation
 
@@ -12,7 +12,7 @@ This component is especially useful if you plan on creating an alternative timel
 npm install --save stateful-react-youtube
 ```
 
-##Usage
+## Usage
 Include the YouTube API in your html file:
 ```HTML
 <script src="https://www.youtube.com/player_api"></script>
@@ -107,7 +107,7 @@ import YouTubeVideo from "stateful-react-youtube";
     </tr>
   </tbody></table>
   
-###props (functions)
+### props (functions)
  
  <table><thead>
       <tr>
@@ -143,13 +143,13 @@ import YouTubeVideo from "stateful-react-youtube";
       </tr>
     </tbody></table>
 
-###Escape hatch
+### Escape hatch
 You can access the YouTube API by putting a ref on the `YouTubeVideo` component and accessing `this.refs.yourRefName.player`
 
-##Todos
+## Todos
 
 - Tests
 
-##Other
+## Other
 
 This library was crafted with care by [Moritz Kobrna](https://twitter.com/neuling2k) & [Calvin Claus](https://twitter.com/calvin_claus).
